@@ -49,17 +49,28 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0: startActivity(new Intent(MainActivity.this,Home.class));
+                        break;
                     case 1: startActivity(new Intent(MainActivity.this,BusquedaReceta.class));
+                        break;
                     case 2: startActivity(new Intent(MainActivity.this,ListaReceta.class));
+                        break;
                     case 3: startActivity(new Intent(MainActivity.this,Login.class));
+                        break;
                     case 4: startActivity(new Intent(MainActivity.this,Mercado.class));
+                        break;
                     case 5: startActivity(new Intent(MainActivity.this,Perfil.class));
+                        break;
                     case 6: startActivity(new Intent(MainActivity.this,RecetaDetalle.class));
+                        break;
                     case 7: startActivity(new Intent(MainActivity.this,Splash.class));
+                        break;
                     case 8: startActivity(new Intent(MainActivity.this,Top.class));
+                        break;
                     case 9: startActivity(new Intent(MainActivity.this,Video.class));
+                        break;
                     default:
                         Toast.makeText(MainActivity.this,"Invalido",Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
