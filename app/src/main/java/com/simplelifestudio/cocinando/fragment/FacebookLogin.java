@@ -18,7 +18,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,15 +28,21 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.simplelifestudio.cocinando.R;
-import com.simplelifestudio.cocinando.controller.DebugLogin;
+import com.simplelifestudio.cocinando.model.User;
 
-import java.util.concurrent.Executor;
+import java.util.Date;
+import java.util.Objects;
 
 
-public class FacebookLogin extends Fragment {
+public class FacebookLogin extends Fragment implements View.OnClickListener {
 private FirebaseAuth mAuth;
 private CallbackManager callbackManager;
 private LoginButton loginButton;
+private Button loginButton1;
+private Button loginButton2;
+private int styleLoginId;
+private Fragment parentFragment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,40 +55,61 @@ private LoginButton loginButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        callbackManager = CallbackManager.Factory.create();
     }
 
 
     public void initOnCreateView(View v){
-         loginButton = v.findViewById(R.id.facebookLoginButton);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.setFragment(this);
-        setLoginButton();
+         parentFragment = this.getParentFragment();
+         loginButton = v.findViewById(R.id.facebookLoginButton0);
+         loginButton1 = v.findViewById(R.id.facebookLoginButton1);
+         loginButton2 = v.findViewById(R.id.facebookLoginButton2);
+         loginButton1.setOnClickListener(this);
+         loginButton2.setOnClickListener(this);
+         loginButton.setReadPermissions("email", "public_profile");
+         loginButton.setFragment(this);
+         styleLoginButton();
+
+        mAuth = FirebaseAuth.getInstance();
+        callbackManager = CallbackManager.Factory.create();
+
+        //facebook manager
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.i("verf", "start firebase handler");
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.i("verf", "stop facebook login");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.i("verf", "error facebook login:"+error.getMessage());
+            }
+        });
     }
 
-    public void loginFacebook(){
-        Log.i("verf", "paso1");
-      callbackManager = CallbackManager.Factory.create();
-      loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-          @Override
-          public void onSuccess(LoginResult loginResult) {
-              Log.i("verf", "start firebase handler");
-              handleFacebookAccessToken(loginResult.getAccessToken());
-          }
-
-          @Override
-          public void onCancel() {
-              Log.i("verf", "stop facebook login");
-          }
-
-          @Override
-          public void onError(FacebookException error) {
-              Log.i("verf", "error facebook login:"+error);
-          }
-      });
-        Log.i("verf", "paso1 finalizado");
+    public void styleLoginButton(){
+        try {
+            if(parentFragment.getClass().getSimpleName().equals("Login")){
+                loginButton2.setVisibility(View.VISIBLE);
+                styleLoginId = R.id.facebookLoginButton2;
+            }
+            else if(parentFragment.getClass().getSimpleName().equals("Registry")){
+                loginButton1.setVisibility(View.VISIBLE);
+                styleLoginId = R.id.facebookLoginButton1;
+            }
+            else {
+                loginButton.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception err){
+            loginButton.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -94,38 +120,40 @@ private LoginButton loginButton;
 
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.i("verf", "paso2");
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener((Activity) Objects.requireNonNull(getContext()), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.i("verf", " firebase sucess");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                            startActivity(new Intent(getContext(), DebugLogin.class));
-                            getActivity().finish();
+                            User newUser = new User();
+                            assert user != null;
+                            newUser.setName(user.getDisplayName());
+                            newUser.setEmail(user.getEmail());
+                            newUser.setUserId(user.getUid());
+                            newUser.setUserImg(Objects.requireNonNull(user.getPhotoUrl()).toString());
+                            newUser.setRango("cocinero novato");
+                            newUser.setPremiun(false);
+                            newUser.setFechaCreacion(new Date());
+                            TeminosCondiciones teminosCondiciones = new TeminosCondiciones(newUser,getContext(),getActivity());
+                            assert getFragmentManager() != null;
+                            teminosCondiciones.show(getFragmentManager(), "Terminos");
                         } else {
-
-                            Log.i("verf", "fail firebase ");
-                            Toast.makeText(getContext(), "Authentication failed.",
+                            Log.w("Firebase", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(getContext(), "error:"+ Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
 
-                        // ...
                     }
                 });
     }
 
-    public void setLoginButton(){
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginFacebook();
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==styleLoginId){
+            loginButton.performClick();
+        }
     }
 }
+

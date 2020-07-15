@@ -12,18 +12,21 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.simplelifestudio.cocinando.R;
 
+
 public class WelcomeSlide extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
+    public String[] slide_body;
 
     public WelcomeSlide(Context context) {
         this.context = context;
+      this.slide_body = new String[]{
+              context.getString(R.string.slide_0), context.getString(R.string.lorem_ipsum_s), context.getString(R.string.lorem_ipsum_s)
+      };
+
     }
 
 
-    public String[] slide_body = {
-            "1","2","3","4"
-};
 
     @Override
     public int getCount() {
@@ -32,7 +35,7 @@ public class WelcomeSlide extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (FrameLayout) object;
+        return view == object;
     }
 
     @NonNull

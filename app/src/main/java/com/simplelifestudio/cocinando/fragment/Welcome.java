@@ -1,11 +1,6 @@
 package com.simplelifestudio.cocinando.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,23 +9,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.simplelifestudio.cocinando.R;
 import com.simplelifestudio.cocinando.adapters.WelcomeSlide;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Welcome extends Fragment {
 private LinearLayout linearLayout;
 private ViewPager viewpager;
-private Button iniciar;
-private Button registrar;
-public Boolean isActive = true;
 private TextView[] dots;
-
-private WelcomeSlide welcomeSlideAdapeter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,28 +44,28 @@ private WelcomeSlide welcomeSlideAdapeter;
 
     public void init(View v){
         linearLayout = v.findViewById(R.id.welcomeDotsLY);
-        welcomeSlideAdapeter = new WelcomeSlide(getContext());
+        WelcomeSlide welcomeSlideAdapeter = new WelcomeSlide(Objects.requireNonNull(getContext()));
         viewpager = v.findViewById(R.id.welcomeViewPagerVP);
         viewpager.setAdapter(welcomeSlideAdapeter);
         viewpager.addOnPageChangeListener(viewlistener);
-        iniciar = v.findViewById(R.id.welcomeIniciarBT);
+        Button iniciar = v.findViewById(R.id.welcomeIniciarBT);
         iniciar.setOnClickListener((View.OnClickListener) getContext());
-        registrar = v.findViewById(R.id.welcomeRegistrarBT);
+        Button registrar = v.findViewById(R.id.welcomeRegistrarBT);
         registrar.setOnClickListener((View.OnClickListener) getContext());
     }
     public void addDotsIndicator(int position){
-        dots = new TextView[4];
+        dots = new TextView[3];
         linearLayout.removeAllViews();
 
         for(int i = 0; i< dots.length;i++){
             dots[i] = new TextView(getContext());
             dots[i].setText((Html.fromHtml("&#8226")));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.colorPrimary));
+            dots[i].setTextColor(getResources().getColor(R.color.shadow));
             linearLayout.addView(dots[i]);
         }
         if(dots.length >0){
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            dots[position].setTextColor(getResources().getColor(R.color.white));
         }
     }
 
@@ -99,7 +92,7 @@ private WelcomeSlide welcomeSlideAdapeter;
         @Override
         public void run() {
             try {
-                getActivity().runOnUiThread(new Runnable() {
+                Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Log.i("Timer slideWelcome","iniciado");
@@ -111,7 +104,7 @@ private WelcomeSlide welcomeSlideAdapeter;
                     }
                 });
             }
-            catch (Exception e){
+            catch (Exception ignored){
 
             }
 

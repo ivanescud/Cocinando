@@ -3,13 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:visibility="visible"
     tools:context=".fragment.FacebookLogin">
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebookLoginButton"
+        android:id="@+id/facebookLoginButton0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/facebookLoginButton1"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:background="@drawable/roundedbutton_right_disable"
+        android:backgroundTint="@color/com_facebook_blue"
+        android:drawableStart="@drawable/ic_facebook_f"
+        android:paddingStart="15dp"
+        android:paddingEnd="5dp"
+        android:text="@string/sigin_facebook"
+        android:textColor="@color/com_facebook_button_login_silver_background_color"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/facebookLoginButton2"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/com_facebook_button_login_background_color"
+        android:drawableStart="@drawable/ic_facebook_f"
+        android:padding="5dp"
+        android:text="@string/facebook"
+        android:textColor="@color/com_facebook_button_login_silver_background_color"
+        android:visibility="gone" />
 </FrameLayout>

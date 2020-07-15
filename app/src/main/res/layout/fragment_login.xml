@@ -11,39 +11,52 @@
         android:id="@+id/loginEmailET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/registro_email"
         android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/loginPasswordET"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/loginPasswordET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/registro_pass"
         android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailET"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailET" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/login_button"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordET" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         tools:layout_editor_absoluteX="35dp" />
@@ -52,29 +65,31 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:gravity="center_horizontal"
         android:text="@string/login_iniciar_con"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-    <Button
+    <fragment
         android:id="@+id/loginFacebookBT"
-        android:layout_width="160dp"
+        android:name="com.simplelifestudio.cocinando.fragment.FacebookLogin"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/googleg_disabled_color_18"
-        android:text="@string/facebook"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toStartOf="@+id/loginGoogleBT"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
+    <fragment
         android:id="@+id/loginGoogleBT"
-        android:layout_width="160dp"
+        android:name="com.simplelifestudio.cocinando.fragment.GoogleLogin"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/googleg_standard_color_18"
-        android:text="@string/google"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/loginFacebookBT"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -83,15 +98,20 @@
         android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@+id/loginFacebookBT" />
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/loginFacebookBT"
+        tools:layout_editor_absoluteX="25dp" />
 
     <TextView
-        android:id="@+id/loginUnknowPasswordTV"
+        android:id="@+id/loginPasswordResetTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/login_unknowpass"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/loginTermTV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -100,10 +120,13 @@
         android:id="@+id/loginTermTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/login_terminos_condiciones"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUnknowPasswordTV" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPasswordResetTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

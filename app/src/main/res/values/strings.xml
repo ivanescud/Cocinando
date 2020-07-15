@@ -18,12 +18,16 @@
     <string name="registro_facebook">Iniciar con Facebook</string>
     <string name="registro_google">Iniciar con Google</string>
     <!-- LOGIN -->
+    <string name="sigin_facebook">Iniciar con Facebook</string>
+    <string name="sigin_google">Iniciar con Google</string>
     <string name="login_button">Login</string>
+    <string name="accept_term">acepto los terminos</string>
     <string name="login_iniciar_con">Iniciar con</string>
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
     <string name="login_unknowpass">Olvide mi contraseña</string>
     <string name="login_terminos_condiciones">Términos y condiciones</string>
+    <string name="logout">Logout</string>
     <!--Descipcion de imagenes-->
     <string name="ico_cocinando">Icono de Cocinando</string>
     <string name="ico_facebook">Icono de facebook</string>
@@ -31,6 +35,28 @@
     <!--FACEBOOK-->
     <string name="facebook_app_id">565043597518228</string>
     <string name="fb_login_protocol_scheme">fb565043597518228</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Slide text-->
+    <string name="slide_0">Encuentra tu comida favorita y descubre nuevo
+                           platillos, restaurante y lugares cerca de ti.
+                           Para deleitar tu parladar.</string>
+    <!-- Loren ipsum -->
+    <string name="lorem_ipsum_m">HLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum orci nec metus scelerisque,
+        a luctus nulla interdum. Phasellus mauris est, finibus commodo lorem vel, aliquet accumsan orci. Pellentesque habitant morbi
+        tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes,
+        nascetur ridiculus mus. Sed efficitur metus a efficitur dictum. Etiam nec libero ut lorem volutpat facilisis eget non nisl.
+        Suspendisse sed est nulla. Nunc eu consectetur dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
+        condimentum mollis eros sed tristique. Maecenas in sodales nibh. Ut eleifend nulla quis ex condimentum accumsan. Aliquam lectus
+        velit, rutrum sed ante imperdiet, bibendum ornare nibh.Duis suscipit nisl et arcu mattis, quis scelerisque ipsum laoreet. Fusce
+        consequat augue interdum metus interdum, sit amet consectetur lacus vestibulum. Sed cursus mi non tortor congue placerat et
+        nisl. Curabitur euismod velit odio, vel ultrices lectus blandit at. Duis consectetur lectus id enim ultrices placerat. Nullam ac
+        molestie massa. Nam vel neque dignissim, maximus dolor ut, condimentum enim. Vestibulum molestie ex a augue pellentesque blandit.
+        Nulla ullamcorper porta risus, eget sollicitudin augue accumsan at.Integer diam nisi, dapibus quis sollicitudin eu, bibendum sit
+        amet urna. Ut luctus elementum tellus, a scelerisque sapien semper sit amet. Sed hendrerit risus erat, ac vehicula purus semper
+        non. Donec imperdiet, magna nec malesuada placerat, nisl tortor imperdiet mauris, vitae accumsan risus leo nec justo. Vestibulum
+        non ex posuere, lobortis ipsum non, fermentum arcu. Maecenas vitae augue vestibulum, placerat metus nec, lobortis augue.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce mattis lacus quam, a
+        aliquam ex viverra euismod. Sed interdum fringilla est. Nullam et diam quis augue posuere rutrum. Phasellus pellentesque ipsum
+        lacus, at commodo nisi rhoncus id.</string>
+    <string name="lorem_ipsum_s">HLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum orci nec metus scelerisque,
+        a luctus nulla interdum. Phasellus mauris est, finibus commodo lorem vel, aliquet accumsan orci.</string>
 </resources>
